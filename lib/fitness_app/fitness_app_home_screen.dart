@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:project/fitness_app/training/training_screen.dart';
 
+import '../design_course/home_design_course.dart';
 import 'bottom_navigation_view/bottom_bar_view.dart';
 import 'fitness_app_theme.dart';
 import 'models/tabIcon_data.dart';
 import 'my_diary/my_diary_screen.dart';
 
 class FitnessAppHomeScreen extends StatefulWidget {
+  const FitnessAppHomeScreen({Key? key}) : super(key: key);
+
   @override
   _FitnessAppHomeScreenState createState() => _FitnessAppHomeScreenState();
 }
@@ -23,14 +26,14 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
 
   @override
   void initState() {
-    tabIconsList.forEach((TabIconData tab) {
+    for (var tab in tabIconsList) {
       tab.isSelected = false;
-    });
+    }
     tabIconsList[0].isSelected = true;
 
     animationController = AnimationController(
         duration: const Duration(milliseconds: 600), vsync: this);
-    tabBody = MyDiaryScreen(animationController: animationController);
+    tabBody = const DesignCourseHomeScreen();
     super.initState();
   }
 
@@ -80,7 +83,16 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
           tabIconsList: tabIconsList,
           addClick: () {},
           changeIndex: (int index) {
-            if (index == 0 || index == 2) {
+            if (index == 0) {
+              animationController?.reverse().then<dynamic>((data) {
+                if (!mounted) {
+                  return;
+                }
+                setState(() {
+                  tabBody = const DesignCourseHomeScreen();
+                });
+              });
+            } else if (index == 2) {
               animationController?.reverse().then<dynamic>((data) {
                 if (!mounted) {
                   return;

@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:project/design_course/popular_course_list_view.dart';
 
 import '../main.dart';
-import 'category_list_view.dart';
+import '../model/category.dart';
+import 'category_view.dart';
+import 'featured_products_view.dart';
 import 'course_info_screen.dart';
 import 'design_course_app_theme.dart';
 
 class DesignCourseHomeScreen extends StatefulWidget {
+  const DesignCourseHomeScreen({Key? key}) : super(key: key);
+
   @override
   _DesignCourseHomeScreenState createState() => _DesignCourseHomeScreenState();
 }
 
 class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
-  CategoryType categoryType = CategoryType.ui;
+  Category categorySelect = Category();
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +29,16 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
             SizedBox(
               height: MediaQuery.of(context).padding.top,
             ),
-            getAppBarUI(),
+            // getAppBarUI(),
             Expanded(
               child: SingleChildScrollView(
-                child: Container(
+                child: SizedBox(
                   height: MediaQuery.of(context).size.height,
                   child: Column(
                     children: <Widget>[
                       getSearchBarUI(),
                       getCategoryUI(),
+                      getFeaturedProducts(),
                       Flexible(
                         child: getPopularCourseUI(),
                       ),
@@ -53,10 +58,10 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(top: 8.0, left: 18, right: 16),
+        const Padding(
+          padding: EdgeInsets.only(top: 8.0, left: 18, right: 16),
           child: Text(
-            'Category',
+            'Ngành hàng',
             textAlign: TextAlign.left,
             style: TextStyle(
               fontWeight: FontWeight.w600,
@@ -66,31 +71,34 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
             ),
           ),
         ),
-        const SizedBox(
-          height: 16,
+        CategoryListView(
+          callBack: () {
+            moveTo();
+          },
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16),
-          child: Row(
-            children: <Widget>[
-              getButtonUI(CategoryType.ui, categoryType == CategoryType.ui),
-              const SizedBox(
-                width: 16,
-              ),
-              getButtonUI(
-                  CategoryType.coding, categoryType == CategoryType.coding),
-              const SizedBox(
-                width: 16,
-              ),
-              getButtonUI(
-                  CategoryType.basic, categoryType == CategoryType.basic),
-            ],
+      ],
+    );
+  }
+
+  Widget getFeaturedProducts() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        const Padding(
+          padding: EdgeInsets.only(top: 8.0, left: 18, right: 16),
+          child: Text(
+            'Nổi bật',
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 22,
+              letterSpacing: 0.27,
+              color: DesignCourseAppTheme.darkerText,
+            ),
           ),
         ),
-        const SizedBox(
-          height: 16,
-        ),
-        CategoryListView(
+        FeaturedProductsView(
           callBack: () {
             moveTo();
           },
@@ -106,8 +114,8 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            'Popular Course',
+          const Text(
+            'Sản phẩm',
             textAlign: TextAlign.left,
             style: TextStyle(
               fontWeight: FontWeight.w600,
@@ -137,65 +145,14 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
     );
   }
 
-  Widget getButtonUI(CategoryType categoryTypeData, bool isSelected) {
-    String txt = '';
-    if (CategoryType.ui == categoryTypeData) {
-      txt = 'Ui/Ux';
-    } else if (CategoryType.coding == categoryTypeData) {
-      txt = 'Coding';
-    } else if (CategoryType.basic == categoryTypeData) {
-      txt = 'Basic UI';
-    }
-    return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-            color: isSelected
-                ? DesignCourseAppTheme.nearlyBlue
-                : DesignCourseAppTheme.nearlyWhite,
-            borderRadius: const BorderRadius.all(Radius.circular(24.0)),
-            border: Border.all(color: DesignCourseAppTheme.nearlyBlue)),
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            splashColor: Colors.white24,
-            borderRadius: const BorderRadius.all(Radius.circular(24.0)),
-            onTap: () {
-              setState(() {
-                categoryType = categoryTypeData;
-              });
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  top: 12, bottom: 12, left: 18, right: 18),
-              child: Center(
-                child: Text(
-                  txt,
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 12,
-                    letterSpacing: 0.27,
-                    color: isSelected
-                        ? DesignCourseAppTheme.nearlyWhite
-                        : DesignCourseAppTheme.nearlyBlue,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget getSearchBarUI() {
     return Padding(
-      padding: const EdgeInsets.only(top: 8.0, left: 18),
+      padding: const EdgeInsets.only(top: 0.0, left: 60),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width * 0.75,
             height: 64,
             child: Padding(
@@ -216,7 +173,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
                       child: Container(
                         padding: const EdgeInsets.only(left: 16, right: 16),
                         child: TextFormField(
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontFamily: 'WorkSans',
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
@@ -224,7 +181,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
                           ),
                           keyboardType: TextInputType.text,
                           decoration: InputDecoration(
-                            labelText: 'Search for course',
+                            labelText: 'Tìm kiếm sản phẩm',
                             border: InputBorder.none,
                             helperStyle: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -269,7 +226,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
+              children: const <Widget>[
                 Text(
                   'Choose your',
                   textAlign: TextAlign.left,
@@ -293,7 +250,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
               ],
             ),
           ),
-          Container(
+          SizedBox(
             width: 60,
             height: 60,
             child: Image.asset('assets/design_course/userImage.png'),

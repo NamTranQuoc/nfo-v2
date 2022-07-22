@@ -4,8 +4,8 @@ import 'app_theme.dart';
 import 'custom_drawer/drawer_user_controller.dart';
 import 'custom_drawer/home_drawer.dart';
 import 'feedback_screen.dart';
+import 'fitness_app/fitness_app_home_screen.dart';
 import 'help_screen.dart';
-import 'home_screen.dart';
 import 'invite_friend_screen.dart';
 
 class NavigationHomeScreen extends StatefulWidget {
@@ -22,7 +22,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
   @override
   void initState() {
     drawerIndex = DrawerIndex.HOME;
-    screenView = const MyHomePage();
+    screenView = const FitnessAppHomeScreen();
     super.initState();
   }
 
@@ -56,7 +56,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
       switch (drawerIndex) {
         case DrawerIndex.HOME:
           setState(() {
-            screenView = const MyHomePage();
+            screenView = const FitnessAppHomeScreen();
           });
           break;
         case DrawerIndex.Help:
