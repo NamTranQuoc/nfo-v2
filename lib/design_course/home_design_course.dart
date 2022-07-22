@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/design_course/popular_course_list_view.dart';
 
-import '../main.dart';
 import '../model/category.dart';
 import 'category_view.dart';
 import 'featured_products_view.dart';
@@ -33,10 +32,9 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
             Expanded(
               child: SingleChildScrollView(
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height,
+                  height: MediaQuery.of(context).size.height + 220,
                   child: Column(
                     children: <Widget>[
-                      getSearchBarUI(),
                       getCategoryUI(),
                       getFeaturedProducts(),
                       Flexible(
@@ -141,78 +139,6 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
       context,
       MaterialPageRoute<dynamic>(
         builder: (BuildContext context) => CourseInfoScreen(),
-      ),
-    );
-  }
-
-  Widget getSearchBarUI() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 0.0, left: 60),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: <Widget>[
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.75,
-            height: 64,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 8, bottom: 8),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: HexColor('#F8FAFB'),
-                  borderRadius: const BorderRadius.only(
-                    bottomRight: Radius.circular(13.0),
-                    bottomLeft: Radius.circular(13.0),
-                    topLeft: Radius.circular(13.0),
-                    topRight: Radius.circular(13.0),
-                  ),
-                ),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.only(left: 16, right: 16),
-                        child: TextFormField(
-                          style: const TextStyle(
-                            fontFamily: 'WorkSans',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: DesignCourseAppTheme.nearlyBlue,
-                          ),
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
-                            labelText: 'Tìm kiếm sản phẩm',
-                            border: InputBorder.none,
-                            helperStyle: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              color: HexColor('#B9BABC'),
-                            ),
-                            labelStyle: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
-                              letterSpacing: 0.2,
-                              color: HexColor('#B9BABC'),
-                            ),
-                          ),
-                          onEditingComplete: () {},
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: Icon(Icons.search, color: HexColor('#B9BABC')),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
-          const Expanded(
-            child: SizedBox(),
-          )
-        ],
       ),
     );
   }
