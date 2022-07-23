@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/design_course/popular_course_list_view.dart';
 
+import '../fitness_app/fitness_app_theme.dart';
 import '../model/category.dart';
 import 'category_view.dart';
 import 'featured_products_view.dart';
@@ -20,7 +21,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: DesignCourseAppTheme.nearlyWhite,
+      color: FitnessAppTheme.background,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Column(
@@ -185,10 +186,4 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
       ),
     );
   }
-}
-
-enum CategoryType {
-  ui,
-  coding,
-  basic,
 }

@@ -21,6 +21,7 @@ class _ProductInfoScreen extends State<ProductInfoScreen>
   double opacity1 = 0.0;
   double opacity2 = 0.0;
   double opacity3 = 0.0;
+  String typeSelect = '';
 
   @override
   void initState() {
@@ -202,29 +203,6 @@ class _ProductInfoScreen extends State<ProductInfoScreen>
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
-                                  SizedBox(
-                                    width: 48,
-                                    height: 48,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: DesignCourseAppTheme.nearlyWhite,
-                                        borderRadius: const BorderRadius.all(
-                                          Radius.circular(16.0),
-                                        ),
-                                        border: Border.all(
-                                            color: DesignCourseAppTheme.grey
-                                                .withOpacity(0.2)),
-                                      ),
-                                      child: const Icon(
-                                        Icons.add,
-                                        color: DesignCourseAppTheme.nearlyBlue,
-                                        size: 28,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 16,
-                                  ),
                                   Expanded(
                                     child: Container(
                                       height: 48,
@@ -244,7 +222,7 @@ class _ProductInfoScreen extends State<ProductInfoScreen>
                                       ),
                                       child: const Center(
                                         child: Text(
-                                          'Join Course',
+                                          'Thêm vào giỏ hàng',
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                             fontWeight: FontWeight.w600,
@@ -325,40 +303,54 @@ class _ProductInfoScreen extends State<ProductInfoScreen>
   }
 
   Widget getTimeBoxUI(String txt2) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        decoration: BoxDecoration(
-          color: DesignCourseAppTheme.nearlyWhite,
-          borderRadius: const BorderRadius.all(Radius.circular(16.0)),
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-                color: DesignCourseAppTheme.grey.withOpacity(0.2),
-                offset: const Offset(1.1, 1.1),
-                blurRadius: 8.0),
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(
-              left: 18.0, right: 18.0, top: 12.0, bottom: 12.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                txt2,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w200,
-                  fontSize: 14,
-                  letterSpacing: 0.27,
-                  color: DesignCourseAppTheme.grey,
-                ),
-              ),
+    bool isSelect = txt2 == typeSelect;
+    return InkWell(
+      splashColor: Colors.white24,
+      borderRadius: const BorderRadius.all(Radius.circular(24.0)),
+      onTap: () {
+        setState(() {
+          typeSelect = txt2;
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          decoration: BoxDecoration(
+            color: isSelect
+                ? DesignCourseAppTheme.nearlyBlue
+                : DesignCourseAppTheme.nearlyWhite,
+            borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                  color: DesignCourseAppTheme.grey.withOpacity(0.2),
+                  offset: const Offset(1.1, 1.1),
+                  blurRadius: 8.0),
             ],
           ),
+          child: Padding(
+            padding: const EdgeInsets.only(
+                left: 18.0, right: 18.0, top: 12.0, bottom: 12.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  txt2,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w200,
+                    fontSize: 14,
+                    letterSpacing: 0.27,
+                    color: isSelect
+                        ? DesignCourseAppTheme.nearlyWhite
+                        : DesignCourseAppTheme.grey
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
-      ),
+      )
     );
   }
 }

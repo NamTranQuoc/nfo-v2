@@ -123,7 +123,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
       color: FitnessAppTheme.background,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: DesignCourseAppTheme.nearlyWhite,
+          backgroundColor: FitnessAppTheme.background,
           elevation: 0,
           title: getSearchBarUI(),
         ),
