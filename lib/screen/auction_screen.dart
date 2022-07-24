@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:project/component/input_custom.dart';
 import 'package:project/model/product.dart';
 
 import '../core/parse.dart';
 import '../design_course/design_course_app_theme.dart';
 import '../fitness_app/fitness_app_theme.dart';
 
-class ProductInfoScreen extends StatefulWidget {
-  const ProductInfoScreen({Key? key, this.product}) : super(key: key);
-
-  final Product? product;
+class AuctionScreen extends StatefulWidget {
+  const AuctionScreen({Key? key}) : super(key: key);
 
   @override
-  _ProductInfoScreen createState() => _ProductInfoScreen();
+  _AuctionScreen createState() => _AuctionScreen();
 }
 
-class _ProductInfoScreen extends State<ProductInfoScreen>
+class _AuctionScreen extends State<AuctionScreen>
     with TickerProviderStateMixin {
   final double infoHeight = 364.0;
   AnimationController? animationController;
@@ -23,6 +22,7 @@ class _ProductInfoScreen extends State<ProductInfoScreen>
   double opacity2 = 0.0;
   double opacity3 = 0.0;
   String typeSelect = '';
+  TextEditingController textEditingController = TextEditingController();
 
   @override
   void initState() {
@@ -51,14 +51,6 @@ class _ProductInfoScreen extends State<ProductInfoScreen>
     });
   }
 
-  List<Widget> listType() {
-    List<Widget> result = [];
-    for (var element in widget.product!.types) {
-      result.add(getTimeBoxUI(element));
-    }
-    return result;
-  }
-
   @override
   Widget build(BuildContext context) {
     final double tempHeight = MediaQuery.of(context).size.height -
@@ -72,13 +64,13 @@ class _ProductInfoScreen extends State<ProductInfoScreen>
           children: <Widget>[
             Column(
               children: <Widget>[
-                const SizedBox(height: 25,),
+                const SizedBox(height: 10,),
                 AspectRatio(
-                    aspectRatio: 1.2,
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
-                      child: Image.network(widget.product!.image, fit: BoxFit.fill,),
-                    )
+                  aspectRatio: 1.2,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+                    child: Image.network(Product.auctionCurrent.image, fit: BoxFit.fill,),
+                  )
                 ),
               ],
             ),
@@ -117,7 +109,7 @@ class _ProductInfoScreen extends State<ProductInfoScreen>
                             padding:
                                 const EdgeInsets.only(top: 32.0, left: 18, right: 16),
                             child: Text(
-                              widget.product!.name,
+                              Product.auctionCurrent.name,
                               textAlign: TextAlign.left,
                               style: const TextStyle(
                                 fontWeight: FontWeight.w600,
@@ -134,8 +126,18 @@ class _ProductInfoScreen extends State<ProductInfoScreen>
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
+                                const Text(
+                                  'Giá khởi điểm',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 16,
+                                    letterSpacing: 0.27,
+                                    color: DesignCourseAppTheme.darkerText,
+                                  ),
+                                ),
                                 Text(
-                                  formatMoney(widget.product!.price),
+                                  formatMoney(Product.auctionCurrent.price),
                                   textAlign: TextAlign.left,
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w200,
@@ -144,36 +146,39 @@ class _ProductInfoScreen extends State<ProductInfoScreen>
                                     color: DesignCourseAppTheme.nearlyBlue,
                                   ),
                                 ),
-                                Row(
-                                  children: <Widget>[
-                                    Text(
-                                      '${widget.product!.evaluate}',
-                                      textAlign: TextAlign.left,
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w200,
-                                        fontSize: 22,
-                                        letterSpacing: 0.27,
-                                        color: DesignCourseAppTheme.grey,
-                                      ),
-                                    ),
-                                    const Icon(
-                                      Icons.star,
-                                      color: DesignCourseAppTheme.nearlyBlue,
-                                      size: 24,
-                                    ),
-                                  ],
-                                )
                               ],
                             ),
                           ),
-                          AnimatedOpacity(
-                            duration: const Duration(milliseconds: 500),
-                            opacity: opacity1,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8),
-                              child: Row(
-                                children: listType(),
-                              ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 16, right: 16, bottom: 8),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Container(
+                                    height: 64,
+                                    width: MediaQuery.of(context).size.width * 0.27,
+                                    padding: const EdgeInsets.only(top: 10, bottom: 10),
+                                    child: ElevatedButton(
+                                        onPressed: () {},
+                                        style: ElevatedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(13.0),
+                                          ),
+                                          primary: DesignCourseAppTheme.nearlyBlue,
+                                        ),
+                                        child: const Text(
+                                            'Đấu giá',
+                                            textAlign: TextAlign.justify,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14,
+                                              letterSpacing: 0.27,
+                                              color: DesignCourseAppTheme.nearlyWhite,
+                                            )))),
+                                InputCustom('Giá bạn mua', width: MediaQuery.of(context).size.width * 0.4, crossAxisAlignment: CrossAxisAlignment.end,),
+                              ],
                             ),
                           ),
                           Expanded(
@@ -184,7 +189,7 @@ class _ProductInfoScreen extends State<ProductInfoScreen>
                                 padding: const EdgeInsets.only(
                                     left: 16, right: 16, top: 8, bottom: 8),
                                 child: Text(
-                                  widget.product!.description,
+                                  Product.auctionCurrent.description,
                                   textAlign: TextAlign.justify,
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w200,
@@ -195,52 +200,6 @@ class _ProductInfoScreen extends State<ProductInfoScreen>
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                 ),
-                              ),
-                            ),
-                          ),
-                          AnimatedOpacity(
-                            duration: const Duration(milliseconds: 500),
-                            opacity: opacity3,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 16, bottom: 16, right: 16),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  Expanded(
-                                    child: Container(
-                                      height: 48,
-                                      decoration: BoxDecoration(
-                                        color: DesignCourseAppTheme.nearlyBlue,
-                                        borderRadius: const BorderRadius.all(
-                                          Radius.circular(16.0),
-                                        ),
-                                        boxShadow: <BoxShadow>[
-                                          BoxShadow(
-                                              color: DesignCourseAppTheme
-                                                  .nearlyBlue
-                                                  .withOpacity(0.5),
-                                              offset: const Offset(1.1, 1.1),
-                                              blurRadius: 10.0),
-                                        ],
-                                      ),
-                                      child: const Center(
-                                        child: Text(
-                                          'Thêm vào giỏ hàng',
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 18,
-                                            letterSpacing: 0.0,
-                                            color: DesignCourseAppTheme
-                                                .nearlyWhite,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
                               ),
                             ),
                           ),
@@ -280,27 +239,6 @@ class _ProductInfoScreen extends State<ProductInfoScreen>
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-              child: SizedBox(
-                width: AppBar().preferredSize.height,
-                height: AppBar().preferredSize.height,
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    borderRadius:
-                        BorderRadius.circular(AppBar().preferredSize.height),
-                    child: const Icon(
-                      Icons.arrow_back_ios,
-                      color: DesignCourseAppTheme.nearlyBlack,
-                    ),
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
-              ),
-            )
           ],
         ),
       ),

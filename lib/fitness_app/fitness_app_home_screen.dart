@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:project/fitness_app/training/training_screen.dart';
 
+import '../component/search.dart';
 import '../design_course/design_course_app_theme.dart';
 import '../design_course/home_design_course.dart';
 import '../main.dart';
+import '../screen/auction_screen.dart';
 import 'bottom_navigation_view/bottom_bar_view.dart';
 import 'fitness_app_theme.dart';
 import 'models/tabIcon_data.dart';
@@ -26,6 +28,8 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
     color: FitnessAppTheme.background,
   );
 
+  Widget appbar = const SizedBox();
+
   @override
   void initState() {
     for (var tab in tabIconsList) {
@@ -36,6 +40,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
     animationController = AnimationController(
         duration: const Duration(milliseconds: 600), vsync: this);
     tabBody = const DesignCourseHomeScreen();
+    appbar = const Search();
     super.initState();
   }
 
@@ -43,78 +48,6 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
   void dispose() {
     animationController?.dispose();
     super.dispose();
-  }
-
-  Widget getSearchBarUI() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 5.0, left: 50),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: <Widget>[
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.75,
-            height: 64,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 8, bottom: 8),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: HexColor('#F8FAFB'),
-                  borderRadius: const BorderRadius.only(
-                    bottomRight: Radius.circular(13.0),
-                    bottomLeft: Radius.circular(13.0),
-                    topLeft: Radius.circular(13.0),
-                    topRight: Radius.circular(13.0),
-                  ),
-                ),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.only(left: 16, right: 16),
-                        child: TextFormField(
-                          style: const TextStyle(
-                            fontFamily: 'WorkSans',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: DesignCourseAppTheme.nearlyBlue,
-                          ),
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
-                            labelText: 'Tìm kiếm sản phẩm',
-                            border: InputBorder.none,
-                            helperStyle: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              color: HexColor('#B9BABC'),
-                            ),
-                            labelStyle: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
-                              letterSpacing: 0.2,
-                              color: HexColor('#B9BABC'),
-                            ),
-                          ),
-                          onEditingComplete: () {},
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: Icon(Icons.search, color: HexColor('#B9BABC')),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
-          const Expanded(
-            child: SizedBox(),
-          )
-        ],
-      ),
-    );
   }
 
   @override
@@ -125,7 +58,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
         appBar: AppBar(
           backgroundColor: FitnessAppTheme.background,
           elevation: 0,
-          title: getSearchBarUI(),
+          title: appbar,
         ),
         backgroundColor: Colors.transparent,
         body: FutureBuilder<bool>(
@@ -169,6 +102,26 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
                 }
                 setState(() {
                   tabBody = const DesignCourseHomeScreen();
+                  appbar = const Search();
+                });
+              });
+            } else if (index == 1) {
+              animationController?.reverse().then<dynamic>((data) {
+                if (!mounted) {
+                  return;
+                }
+                setState(() {
+                  tabBody = const AuctionScreen();
+                  appbar = const Text(
+                    'Đấu giá hiện tại',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 25,
+                      letterSpacing: 0.27,
+                      color: DesignCourseAppTheme.nearlyBlack,
+                    ),
+                  );
                 });
               });
             } else if (index == 2) {
@@ -179,9 +132,19 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
                 setState(() {
                   tabBody =
                       MyDiaryScreen(animationController: animationController);
+                  appbar = const Text(
+                    'Bạn đang bán',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 25,
+                      letterSpacing: 0.27,
+                      color: DesignCourseAppTheme.nearlyBlack,
+                    ),
+                  );
                 });
               });
-            } else if (index == 1 || index == 3) {
+            } else if (index == 3) {
               animationController?.reverse().then<dynamic>((data) {
                 if (!mounted) {
                   return;
@@ -189,6 +152,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
                 setState(() {
                   tabBody =
                       TrainingScreen(animationController: animationController);
+                  appbar = const Search();
                 });
               });
             }

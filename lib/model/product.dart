@@ -132,4 +132,19 @@ class Product {
           '\n- Trong thời gian dài không mang, nên vệ sinh giày sạch sẽ và gói giày lại bằng giấy.'
     ),
   ];
+
+  static Product auctionCurrent = Product(
+      ['40', '41'],
+      id: 'Giày thể thao nam Xyz',
+      name: 'Giày thể thao nam Xyz',
+      price: 777000,
+      evaluate: 4.9,
+      image: "https://firebasestorage.googleapis.com/v0/b/nfo-app.appspot.com/o/products%2F2.png?alt=media",
+      numberOfSold: 5,
+      description: 'Chất liệu bên trong: Grade + đế Cao su'
+          '\nChiều cao thân giày: Cổ thấp'
+          '\nChiều cao gót: Gót cao vừa'
+  );
+
+
 }
