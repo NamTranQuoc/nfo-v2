@@ -6,6 +6,7 @@ import '../design_course/design_course_app_theme.dart';
 import '../design_course/home_design_course.dart';
 import '../main.dart';
 import '../screen/auction_screen.dart';
+import '../screen/post_your_sale_screen.dart';
 import 'bottom_navigation_view/bottom_bar_view.dart';
 import 'fitness_app_theme.dart';
 import 'models/tabIcon_data.dart';
@@ -130,8 +131,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
                   return;
                 }
                 setState(() {
-                  tabBody =
-                      MyDiaryScreen(animationController: animationController);
+                  tabBody = const PostYourSaleScreen();
                   appbar = const Text(
                     'Bạn đang bán',
                     textAlign: TextAlign.center,

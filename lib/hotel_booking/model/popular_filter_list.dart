@@ -9,23 +9,23 @@ class PopularFilterListData {
 
   static List<PopularFilterListData> popularFList = <PopularFilterListData>[
     PopularFilterListData(
-      titleTxt: 'Free Breakfast',
+      titleTxt: 'Miễn phí giao hàng',
       isSelected: false,
     ),
     PopularFilterListData(
-      titleTxt: 'Free Parking',
+      titleTxt: 'Hỏa tốc',
       isSelected: false,
     ),
     PopularFilterListData(
-      titleTxt: 'Pool',
+      titleTxt: 'Chính hãng',
       isSelected: true,
     ),
     PopularFilterListData(
-      titleTxt: 'Pet Friendly',
+      titleTxt: 'Giày',
       isSelected: false,
     ),
     PopularFilterListData(
-      titleTxt: 'Free wifi',
+      titleTxt: 'Áo',
       isSelected: false,
     ),
   ];

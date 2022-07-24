@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:project/design_course/popular_course_list_view.dart';
 
 import '../fitness_app/fitness_app_theme.dart';
+import '../hotel_booking/filters_screen.dart';
+import '../hotel_booking/hotel_app_theme.dart';
 import '../model/category.dart';
 import 'category_view.dart';
 import 'featured_products_view.dart';
@@ -106,6 +108,80 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
     );
   }
 
+  Widget getFilterBarUI() {
+    return Stack(
+      children: <Widget>[
+        Container(
+          color: FitnessAppTheme.background,
+          child: Padding(
+            padding:
+            const EdgeInsets.only(left: 0, right: 0, top: 8, bottom: 4),
+            child: Row(
+              children: <Widget>[
+                const Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(),
+                    child: Text(
+                      'Sản phẩm',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 22,
+                        letterSpacing: 0.27,
+                        color: DesignCourseAppTheme.darkerText,
+                      ),
+                    ),
+                  ),
+                ),
+                Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    focusColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    splashColor: Colors.grey.withOpacity(0.2),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(4.0),
+                    ),
+                    onTap: () {
+                      FocusScope.of(context).requestFocus(FocusNode());
+                      Navigator.push<dynamic>(
+                        context,
+                        MaterialPageRoute<dynamic>(
+                            builder: (BuildContext context) => const FiltersScreen(),
+                            fullscreenDialog: true),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Row(
+                        children: const <Widget>[
+                          Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Icon(Icons.sort,
+                                color: DesignCourseAppTheme.nearlyBlue),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        const Positioned(
+          top: 0,
+          left: 0,
+          right: 0,
+          child: Divider(
+            height: 1,
+          ),
+        )
+      ],
+    );
+  }
+
   Widget getPopularCourseUI() {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, left: 18, right: 16),
@@ -113,16 +189,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          const Text(
-            'Sản phẩm',
-            textAlign: TextAlign.left,
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 22,
-              letterSpacing: 0.27,
-              color: DesignCourseAppTheme.darkerText,
-            ),
-          ),
+          getFilterBarUI(),
           Flexible(
             child: PopularCourseListView(
               callBack: () {

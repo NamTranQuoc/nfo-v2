@@ -7,6 +7,8 @@ import 'range_slider_view.dart';
 import 'slider_view.dart';
 
 class FiltersScreen extends StatefulWidget {
+  const FiltersScreen({Key? key}) : super(key: key);
+
   @override
   _FiltersScreenState createState() => _FiltersScreenState();
 }
@@ -45,7 +47,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                     const Divider(
                       height: 1,
                     ),
-                    allAccommodationUI()
+                    // allAccommodationUI()
                   ],
                 ),
               ),
@@ -77,9 +79,9 @@ class _FiltersScreenState extends State<FiltersScreen> {
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    child: Center(
+                    child: const Center(
                       child: Text(
-                        'Apply',
+                        'Áp dụng',
                         style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 18,
@@ -147,7 +149,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                   Expanded(
                     child: Text(
                       date.titleTxt,
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                     ),
                   ),
                   CupertinoSwitch(
@@ -179,13 +181,13 @@ class _FiltersScreenState extends State<FiltersScreen> {
   void checkAppPosition(int index) {
     if (index == 0) {
       if (accomodationListData[0].isSelected) {
-        accomodationListData.forEach((d) {
+        for (var d in accomodationListData) {
           d.isSelected = false;
-        });
+        }
       } else {
-        accomodationListData.forEach((d) {
+        for (var d in accomodationListData) {
           d.isSelected = true;
-        });
+        }
       }
     } else {
       accomodationListData[index].isSelected =
@@ -218,7 +220,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
           padding:
               const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 8),
           child: Text(
-            'Distance from city center',
+            'Gần đây',
             textAlign: TextAlign.left,
             style: TextStyle(
                 color: Colors.grey,
@@ -248,7 +250,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
           padding:
               const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 8),
           child: Text(
-            'Popular filters',
+            'Tìm kiếm phổ biến',
             textAlign: TextAlign.left,
             style: TextStyle(
                 color: Colors.grey,
@@ -343,7 +345,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            'Price (for 1 night)',
+            'Giá bán',
             textAlign: TextAlign.left,
             style: TextStyle(
                 color: Colors.grey,
@@ -393,17 +395,17 @@ class _FiltersScreenState extends State<FiltersScreen> {
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Icon(Icons.close),
                   ),
                 ),
               ),
             ),
-            Expanded(
+            const Expanded(
               child: Center(
                 child: Text(
-                  'Filters',
+                  'Bộ lọc',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 22,
@@ -411,7 +413,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               width: AppBar().preferredSize.height + 40,
               height: AppBar().preferredSize.height,
             )
