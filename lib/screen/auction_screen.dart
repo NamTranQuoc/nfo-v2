@@ -64,14 +64,20 @@ class _AuctionScreen extends State<AuctionScreen>
           children: <Widget>[
             Column(
               children: <Widget>[
-                const SizedBox(height: 10,),
-                AspectRatio(
-                  aspectRatio: 1.2,
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
-                    child: Image.network(Product.auctionCurrent.image, fit: BoxFit.fill,),
-                  )
+                const SizedBox(
+                  height: 10,
                 ),
+                AspectRatio(
+                    aspectRatio: 1.2,
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(8),
+                          topRight: Radius.circular(8)),
+                      child: Image.network(
+                        Product.auctionCurrent.image,
+                        fit: BoxFit.fill,
+                      ),
+                    )),
               ],
             ),
             Positioned(
@@ -106,8 +112,8 @@ class _AuctionScreen extends State<AuctionScreen>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Padding(
-                            padding:
-                                const EdgeInsets.only(top: 32.0, left: 18, right: 16),
+                            padding: const EdgeInsets.only(
+                                top: 32.0, left: 18, right: 16),
                             child: Text(
                               Product.auctionCurrent.name,
                               textAlign: TextAlign.left,
@@ -158,26 +164,35 @@ class _AuctionScreen extends State<AuctionScreen>
                               children: <Widget>[
                                 Container(
                                     height: 64,
-                                    width: MediaQuery.of(context).size.width * 0.27,
-                                    padding: const EdgeInsets.only(top: 10, bottom: 10),
+                                    width: MediaQuery.of(context).size.width *
+                                        0.27,
+                                    padding: const EdgeInsets.only(
+                                        top: 10, bottom: 10),
                                     child: ElevatedButton(
                                         onPressed: () {},
                                         style: ElevatedButton.styleFrom(
                                           shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(13.0),
+                                            borderRadius:
+                                                BorderRadius.circular(13.0),
                                           ),
-                                          primary: DesignCourseAppTheme.nearlyBlue,
+                                          primary:
+                                              DesignCourseAppTheme.nearlyBlue,
                                         ),
-                                        child: const Text(
-                                            'Đấu giá',
+                                        child: const Text('Đấu giá',
                                             textAlign: TextAlign.justify,
                                             style: TextStyle(
                                               fontWeight: FontWeight.w400,
                                               fontSize: 14,
                                               letterSpacing: 0.27,
-                                              color: DesignCourseAppTheme.nearlyWhite,
+                                              color: DesignCourseAppTheme
+                                                  .nearlyWhite,
                                             )))),
-                                InputCustom('Giá bạn mua', width: MediaQuery.of(context).size.width * 0.4, crossAxisAlignment: CrossAxisAlignment.end,),
+                                InputCustom(
+                                  'Giá bạn mua',
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.4,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                ),
                               ],
                             ),
                           ),
@@ -248,52 +263,50 @@ class _AuctionScreen extends State<AuctionScreen>
   Widget getTimeBoxUI(String txt2) {
     bool isSelect = txt2 == typeSelect;
     return InkWell(
-      splashColor: Colors.white24,
-      borderRadius: const BorderRadius.all(Radius.circular(24.0)),
-      onTap: () {
-        setState(() {
-          typeSelect = txt2;
-        });
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          decoration: BoxDecoration(
-            color: isSelect
-                ? DesignCourseAppTheme.nearlyBlue
-                : DesignCourseAppTheme.nearlyWhite,
-            borderRadius: const BorderRadius.all(Radius.circular(16.0)),
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                  color: DesignCourseAppTheme.grey.withOpacity(0.2),
-                  offset: const Offset(1.1, 1.1),
-                  blurRadius: 8.0),
-            ],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(
-                left: 18.0, right: 18.0, top: 12.0, bottom: 12.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  txt2,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w200,
-                    fontSize: 14,
-                    letterSpacing: 0.27,
-                    color: isSelect
-                        ? DesignCourseAppTheme.nearlyWhite
-                        : DesignCourseAppTheme.grey
-                  ),
-                ),
+        splashColor: Colors.white24,
+        borderRadius: const BorderRadius.all(Radius.circular(24.0)),
+        onTap: () {
+          setState(() {
+            typeSelect = txt2;
+          });
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: isSelect
+                  ? DesignCourseAppTheme.nearlyBlue
+                  : DesignCourseAppTheme.nearlyWhite,
+              borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+              boxShadow: <BoxShadow>[
+                BoxShadow(
+                    color: DesignCourseAppTheme.grey.withOpacity(0.2),
+                    offset: const Offset(1.1, 1.1),
+                    blurRadius: 8.0),
               ],
             ),
+            child: Padding(
+              padding: const EdgeInsets.only(
+                  left: 18.0, right: 18.0, top: 12.0, bottom: 12.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    txt2,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontWeight: FontWeight.w200,
+                        fontSize: 14,
+                        letterSpacing: 0.27,
+                        color: isSelect
+                            ? DesignCourseAppTheme.nearlyWhite
+                            : DesignCourseAppTheme.grey),
+                  ),
+                ],
+              ),
+            ),
           ),
-        ),
-      )
-    );
+        ));
   }
 }

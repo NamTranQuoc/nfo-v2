@@ -3,14 +3,12 @@ import 'package:project/fitness_app/training/training_screen.dart';
 
 import '../component/search.dart';
 import '../design_course/design_course_app_theme.dart';
-import '../design_course/home_design_course.dart';
-import '../main.dart';
 import '../screen/auction_screen.dart';
+import '../screen/home_screen.dart';
 import '../screen/post_your_sale_screen.dart';
 import 'bottom_navigation_view/bottom_bar_view.dart';
 import 'fitness_app_theme.dart';
 import 'models/tabIcon_data.dart';
-import 'my_diary/my_diary_screen.dart';
 
 class FitnessAppHomeScreen extends StatefulWidget {
   const FitnessAppHomeScreen({Key? key}) : super(key: key);
@@ -40,7 +38,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
 
     animationController = AnimationController(
         duration: const Duration(milliseconds: 600), vsync: this);
-    tabBody = const DesignCourseHomeScreen();
+    tabBody = const HomeScreen();
     appbar = const Search();
     super.initState();
   }
@@ -102,7 +100,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
                   return;
                 }
                 setState(() {
-                  tabBody = const DesignCourseHomeScreen();
+                  tabBody = const HomeScreen();
                   appbar = const Search();
                 });
               });

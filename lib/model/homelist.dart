@@ -1,9 +1,9 @@
 import 'package:flutter/widgets.dart';
 
-import '../design_course/home_design_course.dart';
 import '../fitness_app/fitness_app_home_screen.dart';
 import '../hotel_booking/hotel_home_screen.dart';
 import '../introduction_animation/introduction_animation_screen.dart';
+import '../screen/home_screen.dart';
 
 class HomeList {
   HomeList({
@@ -29,7 +29,7 @@ class HomeList {
     ),
     HomeList(
       imagePath: 'assets/design_course/design_course.png',
-      navigateScreen: DesignCourseHomeScreen(),
+      navigateScreen: HomeScreen(),
     ),
   ];
 }

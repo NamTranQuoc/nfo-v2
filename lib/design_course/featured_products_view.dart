@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:project/model/product.dart';
 
 import '../component/product_view.dart';
-import '../main.dart';
-import 'design_course_app_theme.dart';
-import 'models/category.dart';
 
 class FeaturedProductsView extends StatefulWidget {
   const FeaturedProductsView({Key? key, this.callBack}) : super(key: key);

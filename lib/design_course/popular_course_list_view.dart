@@ -31,7 +31,7 @@ class _PopularCourseListViewState extends State<PopularCourseListView>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 8, bottom: 70),
+      padding: const EdgeInsets.only(top: 8, bottom: 100),
       child: FutureBuilder<bool>(
         future: getData(),
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {

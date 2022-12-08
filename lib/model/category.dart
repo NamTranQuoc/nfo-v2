@@ -1,4 +1,3 @@
-
 class Category {
   Category({
     this.id = '',

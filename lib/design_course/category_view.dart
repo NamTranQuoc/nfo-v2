@@ -63,8 +63,8 @@ class _CategoryListViewState extends State<CategoryListView>
             });
           },
           child: Padding(
-            padding: const EdgeInsets.only(
-                top: 12, bottom: 12, left: 18, right: 18),
+            padding:
+                const EdgeInsets.only(top: 12, bottom: 12, left: 18, right: 18),
             child: Center(
               child: Text(
                 category.name,

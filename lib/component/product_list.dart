@@ -9,10 +9,10 @@ import '../model/product.dart';
 class ProductList extends StatelessWidget {
   const ProductList(
       {Key? key,
-        this.product,
-        this.animationController,
-        this.animation,
-        this.callback})
+      this.product,
+      this.animationController,
+      this.animation,
+      this.callback})
       : super(key: key);
 
   final VoidCallback? callback;
@@ -53,8 +53,8 @@ class ProductList extends StatelessWidget {
                           child: Container(
                             decoration: BoxDecoration(
                               color: HexColor('#F8FAFB'),
-                              borderRadius: const BorderRadius.all(
-                                  Radius.circular(16.0)),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(16.0)),
                               // border: new Border.all(
                               //     color: DesignCourseAppTheme.notWhite),
                             ),
@@ -73,8 +73,8 @@ class ProductList extends StatelessWidget {
                                             fontWeight: FontWeight.w600,
                                             fontSize: 16,
                                             letterSpacing: 0.27,
-                                            color: DesignCourseAppTheme
-                                                .darkerText,
+                                            color:
+                                                DesignCourseAppTheme.darkerText,
                                           ),
                                         ),
                                       ),
@@ -86,9 +86,9 @@ class ProductList extends StatelessWidget {
                                             bottom: 8),
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                              CrossAxisAlignment.center,
                                           children: <Widget>[
                                             Text(
                                               formatMoney(product!.price),
@@ -105,22 +105,18 @@ class ProductList extends StatelessWidget {
                                               children: <Widget>[
                                                 Text(
                                                   '${product!.evaluate}',
-                                                  textAlign:
-                                                  TextAlign.left,
+                                                  textAlign: TextAlign.left,
                                                   style: const TextStyle(
-                                                    fontWeight:
-                                                    FontWeight.w200,
+                                                    fontWeight: FontWeight.w200,
                                                     fontSize: 13,
                                                     letterSpacing: 0.27,
-                                                    color:
-                                                    DesignCourseAppTheme
+                                                    color: DesignCourseAppTheme
                                                         .grey,
                                                   ),
                                                 ),
                                                 const Icon(
                                                   Icons.star,
-                                                  color:
-                                                  DesignCourseAppTheme
+                                                  color: DesignCourseAppTheme
                                                       .nearlyBlue,
                                                   size: 20,
                                                 ),
@@ -146,22 +142,22 @@ class ProductList extends StatelessWidget {
                     ),
                     Padding(
                       padding:
-                      const EdgeInsets.only(top: 24, right: 16, left: 16),
+                          const EdgeInsets.only(top: 24, right: 16, left: 16),
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius:
-                          const BorderRadius.all(Radius.circular(16.0)),
+                              const BorderRadius.all(Radius.circular(16.0)),
                           boxShadow: <BoxShadow>[
                             BoxShadow(
-                                color: DesignCourseAppTheme.grey
-                                    .withOpacity(0.2),
+                                color:
+                                    DesignCourseAppTheme.grey.withOpacity(0.2),
                                 offset: const Offset(0.0, 0.0),
                                 blurRadius: 6.0),
                           ],
                         ),
                         child: ClipRRect(
                           borderRadius:
-                          const BorderRadius.all(Radius.circular(16.0)),
+                              const BorderRadius.all(Radius.circular(16.0)),
                           child: AspectRatio(
                               aspectRatio: 1.28,
                               child: Image.network(product!.image)),

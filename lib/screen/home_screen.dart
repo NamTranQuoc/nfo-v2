@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:project/design_course/popular_course_list_view.dart';
 
+import '../design_course/category_view.dart';
+import '../design_course/course_info_screen.dart';
+import '../design_course/design_course_app_theme.dart';
+import '../design_course/featured_products_view.dart';
 import '../fitness_app/fitness_app_theme.dart';
 import '../hotel_booking/filters_screen.dart';
-import '../hotel_booking/hotel_app_theme.dart';
 import '../model/category.dart';
-import 'category_view.dart';
-import 'featured_products_view.dart';
-import 'course_info_screen.dart';
-import 'design_course_app_theme.dart';
 
-class DesignCourseHomeScreen extends StatefulWidget {
-  const DesignCourseHomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  _DesignCourseHomeScreenState createState() => _DesignCourseHomeScreenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   Category categorySelect = Category();
 
   @override
@@ -35,7 +34,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
             Expanded(
               child: SingleChildScrollView(
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height + 220,
+                  height: MediaQuery.of(context).size.height + 200,
                   child: Column(
                     children: <Widget>[
                       getCategoryUI(),
@@ -115,7 +114,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
           color: FitnessAppTheme.background,
           child: Padding(
             padding:
-            const EdgeInsets.only(left: 0, right: 0, top: 8, bottom: 4),
+                const EdgeInsets.only(left: 0, right: 0, top: 8, bottom: 4),
             child: Row(
               children: <Widget>[
                 const Expanded(
@@ -148,7 +147,8 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
                       Navigator.push<dynamic>(
                         context,
                         MaterialPageRoute<dynamic>(
-                            builder: (BuildContext context) => const FiltersScreen(),
+                            builder: (BuildContext context) =>
+                                const FiltersScreen(),
                             fullscreenDialog: true),
                       );
                     },

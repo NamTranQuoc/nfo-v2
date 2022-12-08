@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'app_theme.dart';
-import 'custom_drawer/drawer_user_controller.dart';
-import 'custom_drawer/home_drawer.dart';
+import '../app_theme.dart';
+import '../custom_drawer/drawer_user_controller.dart';
+import '../custom_drawer/home_drawer.dart';
+import '../fitness_app/fitness_app_home_screen.dart';
 import 'feedback_screen.dart';
-import 'fitness_app/fitness_app_home_screen.dart';
 import 'help_screen.dart';
 import 'invite_friend_screen.dart';
 

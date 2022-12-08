@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'app_theme.dart';
+import '../app_theme.dart';
 
 class HelpScreen extends StatefulWidget {
   @override

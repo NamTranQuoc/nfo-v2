@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'app_theme.dart';
-import 'navigation_home_screen.dart';
+import 'nav/navigation_home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
     return MaterialApp(
-      title: 'Flutter UI',
+      title: 'NFO',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
