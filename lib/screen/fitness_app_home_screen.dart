@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:project/fitness_app/training/training_screen.dart';
+import 'package:project/screen/information_screen.dart';
 
 import '../component/search.dart';
-import '../design_course/design_course_app_theme.dart';
-import '../screen/auction_screen.dart';
-import '../screen/home_screen.dart';
-import '../screen/post_your_sale_screen.dart';
-import 'bottom_navigation_view/bottom_bar_view.dart';
-import 'fitness_app_theme.dart';
-import 'models/tabIcon_data.dart';
+import 'auction_screen.dart';
+import 'home_screen.dart';
+import 'post_your_sale_screen.dart';
+import '../fitness_app/bottom_navigation_view/bottom_bar_view.dart';
+import '../fitness_app/fitness_app_theme.dart';
+import '../fitness_app/models/tabIcon_data.dart';
 
 class FitnessAppHomeScreen extends StatefulWidget {
   const FitnessAppHomeScreen({Key? key}) : super(key: key);
@@ -92,7 +91,9 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
         ),
         BottomBarView(
           tabIconsList: tabIconsList,
-          addClick: () {},
+          addClick: () {
+
+          },
           changeIndex: (int index) {
             if (index == 0) {
               animationController?.reverse().then<dynamic>((data) {
@@ -118,7 +119,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
                       fontWeight: FontWeight.w500,
                       fontSize: 25,
                       letterSpacing: 0.27,
-                      color: DesignCourseAppTheme.nearlyBlack,
+                      color: FitnessAppTheme.nearlyBlack,
                     ),
                   );
                 });
@@ -137,7 +138,7 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
                       fontWeight: FontWeight.w500,
                       fontSize: 25,
                       letterSpacing: 0.27,
-                      color: DesignCourseAppTheme.nearlyBlack,
+                      color: FitnessAppTheme.nearlyBlack,
                     ),
                   );
                 });
@@ -148,9 +149,17 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
                   return;
                 }
                 setState(() {
-                  tabBody =
-                      TrainingScreen(animationController: animationController);
-                  appbar = const Search();
+                  tabBody = const InformationScreen();
+                  appbar = const Text(
+                    'Thông tin cá nhân',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 25,
+                      letterSpacing: 0.27,
+                      color: FitnessAppTheme.nearlyBlack,
+                    ),
+                  );
                 });
               });
             }

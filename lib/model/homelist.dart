@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../fitness_app/fitness_app_home_screen.dart';
+import '../screen/fitness_app_home_screen.dart';
 import '../hotel_booking/hotel_home_screen.dart';
 import '../introduction_animation/introduction_animation_screen.dart';
 import '../screen/home_screen.dart';
