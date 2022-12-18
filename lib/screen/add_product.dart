@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../component/common.dart';
 import '../design_course/design_course_app_theme.dart';
 import '../hotel_booking/hotel_app_theme.dart';
-import '../main.dart';
+import '../model/category.dart';
 
 class AddProductScreen extends StatefulWidget {
   const AddProductScreen({Key? key}) : super(key: key);
@@ -18,6 +19,18 @@ class _AddProductScreenState extends State<AddProductScreen> {
     "assets/images/feedbackImage.png",
     "assets/images/addImage.png",];
   TextEditingController name = TextEditingController();
+  TextEditingController description = TextEditingController();
+  TextEditingController price = TextEditingController();
+  TextEditingController quantity = TextEditingController();
+  TextEditingController category = TextEditingController();
+
+  final List<Map<String, dynamic>> _categories = Category.categories.map((e) => e.toMap()).toList();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +47,11 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 child: Column(
                   children: <Widget>[
                     listImage(widthImage),
-                    widgetName("Tên sản phẩm", name),
+                    textField("Tên sản phẩm", name, type: TextInputType.text),
+                    textField("Giá bán", price, type: TextInputType.number),
+                    textField("Số lượng", quantity, type: TextInputType.number),
+                    textField("Mô tả", description, type: TextInputType.multiline, maxLine: 4),
+                    selectField("Ngành hàng", category, _categories)
                   ],
                 ),
               ),
@@ -44,12 +61,12 @@ class _AddProductScreenState extends State<AddProductScreen> {
             ),
             Padding(
               padding: const EdgeInsets.only(
-                  left: 16, right: 16, bottom: 16, top: 8),
+                  left: 16, right: 16, bottom: 48, top: 8),
               child: Container(
                 height: 48,
                 decoration: BoxDecoration(
-                  color: HotelAppTheme.buildLightTheme().primaryColor,
-                  borderRadius: const BorderRadius.all(Radius.circular(24.0)),
+                  color: DesignCourseAppTheme.nearlyBlue,
+                  borderRadius: const BorderRadius.all(Radius.circular(16.0)),
                   boxShadow: <BoxShadow>[
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.6),
@@ -83,42 +100,6 @@ class _AddProductScreenState extends State<AddProductScreen> {
         ),
       ),
     );
-  }
-
-  Widget widgetName(String label, TextEditingController controller) {
-    return Container(
-        margin: EdgeInsets.only(right: 25, left: 25, top: 10),
-        padding: EdgeInsets.only(left: 10, right: 10),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(8)),
-            border: Border.all(color: Colors.blueAccent)
-        ),
-        child: TextFormField(
-          controller: controller,
-          style: const TextStyle(
-            fontFamily: 'WorkSans',
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-            color: DesignCourseAppTheme.nearlyBlue,
-          ),
-          keyboardType: TextInputType.text,
-          decoration: InputDecoration(
-            labelText: label,
-            border: InputBorder.none,
-            helperStyle: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-              color: HexColor('#B9BABC'),
-            ),
-            labelStyle: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 16,
-              letterSpacing: 0.2,
-              color: HexColor('#B9BABC'),
-            ),
-          ),
-          onEditingComplete: () {},
-        ));
   }
 
   Widget listImage(double width) {

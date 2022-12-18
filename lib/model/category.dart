@@ -29,4 +29,11 @@ class Category {
       name: 'Trang sức',
     ),
   ];
+
+  Map<String, dynamic> toMap() {
+    return {
+      'value': id,
+      'name': name,
+    };
+  }
 }
