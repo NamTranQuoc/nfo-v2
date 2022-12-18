@@ -72,9 +72,6 @@ class _ProductInfoScreen extends State<ProductInfoScreen>
           children: <Widget>[
             Column(
               children: <Widget>[
-                const SizedBox(
-                  height: 25,
-                ),
                 AspectRatio(
                     aspectRatio: 1.2,
                     child: ClipRRect(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project/screen/information_screen.dart';
 
 import '../component/search.dart';
+import 'add_product.dart';
 import 'auction_screen.dart';
 import 'home_screen.dart';
 import 'post_your_sale_screen.dart';
@@ -92,7 +93,13 @@ class _FitnessAppHomeScreenState extends State<FitnessAppHomeScreen>
         BottomBarView(
           tabIconsList: tabIconsList,
           addClick: () {
-
+            Navigator.push<dynamic>(
+              context,
+              MaterialPageRoute<dynamic>(
+                  builder: (BuildContext context) =>
+                  const AddProductScreen(),
+                  fullscreenDialog: true),
+            );
           },
           changeIndex: (int index) {
             if (index == 0) {
